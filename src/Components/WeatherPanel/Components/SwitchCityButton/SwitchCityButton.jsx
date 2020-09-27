@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import styles from './SwitchCityButton.module.css';
+import styles from './SwitchCityButton.module.css';
 
 class SwitchCityButton extends Component {
-
     handleClick = (e) => {
         e.preventDefault();
         this.props.onClick(this.props.locationValue, this.props.city)
@@ -10,7 +9,7 @@ class SwitchCityButton extends Component {
 
     render() {
         return (
-            <button onClick={this.handleClick}>
+            <button className={styles.button} onClick={this.handleClick}>
                 {this.props.children}
             </button>
         )
