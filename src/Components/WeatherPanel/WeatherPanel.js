@@ -66,7 +66,7 @@ class WeatherPanel extends Component {
 
 
     render() {
-        const { panel, panelTop, panelBottom } = styles;
+        const { panel, panelTop, panelBottom, morning, night } = styles;
         const { weather, city, isLoading } = this.state;
         return (
             (isLoading) ?

@@ -1,5 +1,6 @@
 .panel {
-    background: gold;
+    background-image: url('../../Assets/day.jpeg');
+    background-size: cover;
     width: 70vw;
     height: 50vh;
     margin: 3rem auto 0px;
@@ -8,7 +9,15 @@
     box-shadow:
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
-    max-width: 700px;
+    max-width: 700px;   
+    color: white;
+    font-weight: bolder;
+    text-shadow: 0 1px 0 black
+}
+
+.night{
+    background-image: url('../../Assets/night.jpeg');
+    color: black
 }
 
 .panelTop,
