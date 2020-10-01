@@ -1,91 +1,91 @@
 import React, { Component } from 'react';
 import styles from './WeatherPanel.module.css';
-import Temperature from './Components/Temperature';
-import City from './Components/City';
+import CurrentCity from './Components/CurrentCity';
 // import TwitterFeed from './Components/TwitterFeed';
 import WeeklyForecast from './Components/WeeklyForecast';
 import SwitchCityButton from './Components/SwitchCityButton';
 
-
 class WeatherPanel extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            weather: [],
-            city: "MEL",
-            data:
-                [
-                    ["lat=-37.81&lon=144.96", "MEL"],
-                    ["lat=-33.8679&lon=151.2073", "SYD"],
-                    ["lat=-27.4679&lon=153.0281", "BNE"]
-                ]
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      weather: [],
+      city: "MEL",
+      data:
+        [
+          { id: 1, city: "Melbourne", locationValue: "lat=-37.81&lon=144.96" },
+          { id: 2, city: "Sydney", locationValue: "lat=-33.8679&lon=151.2073" },
+          { id: 3, city: "Brisbane", locationValue: "lat=-27.4679&lon=153.0281" },
+          { id: 4, city: "Hong Kong", locationValue: "lat=22.25&lon=114.1667" }
+        ]
     }
+  }
 
-    componentDidMount() {
-        this.onLocationChange(this.state.data[0][0], this.state.data[0][1])
-        // this.onLocationChange("lat=-37.81&lon=144.96", "MEL") //this works
-        // this.onLocationChange(this.state.data[0]) //why is this not working
-    }
+  componentDidMount() {
+    this.onLocationChange(this.state.data[0].locationValue, this.state.data[0].city)
+  }
 
-    onLocationChange = (latitudeAndLongtitude, city) => {
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?${latitudeAndLongtitude}&units=metric&exclude=minutely,hourly&appid=80ecd3ecb26dbc2be397ea02494fdd69`)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({
-                    weather: data,
-                    isLoading: false,
-                    city: city,
-                })
-            }
-            )
-            .catch(error => {
-                console.log("Error message:", error);
-            });
-    }
+  onLocationChange = (latitudeAndLongtitude, city) => {
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?${latitudeAndLongtitude}&units=metric&exclude=minutely,hourly&lang=zh_cn&appid=80ecd3ecb26dbc2be397ea02494fdd69`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          weather: data,
+          isLoading: false,
+          city: city,
+        })
+      }
+      )
+      .catch(error => {
+        console.log("Error message:", error);
+      });
+  }
 
-    renderButtons = () => {
-        return this.state.data.map(
-            (value, index) => {
-                return (
-                    <SwitchCityButton
-                        className={styles.button}
-                        type="submit"
-                        key={index}
-                        onClick={this.onLocationChange}
-                        locationValue={value[0]}
-                        city={value[1]}
-                    >
-                        {value[1]}
-                    </SwitchCityButton>
-                )
-            }
-        )
-    }
-
-
-    render() {
-        const { panel, panelTop, panelBottom, morning, night } = styles;
-        const { weather, city, isLoading } = this.state;
+  renderButtons = () => {
+    return this.state.data.map(
+      (data) => {
         return (
-            (isLoading) ?
-                <h1> Fetching data... </h1> :
-                <div className={panel}>
-                    <div className={panelTop}>
-                        <Temperature temp={(weather.current.temp)} />
-                        <City name={city} />
-                    </div>
-                    <div className={panelBottom}>
-                        {/* <TwitterFeed /> */}
-                        <WeeklyForecast daily={weather.daily} />
-                    </div>
-                    <div className={styles.buttons}>
-                        {this.renderButtons()}
-                    </div>
-                </div>
-        );
-    }
+          <SwitchCityButton
+            className={styles.button}
+            type="submit"
+            key={data.id}
+            onClick={this.onLocationChange}
+            locationValue={data.locationValue}
+            city={data.city}
+          >
+            {data.city}
+          </SwitchCityButton>
+        )
+      }
+    )
+  }
+
+  render() {
+    const { weather, city, isLoading } = this.state;
+    return (
+      (isLoading) ?
+        <h1> Fetching data... </h1> :
+        <div className={styles.panel} >
+          <div className={styles.panelTop}>
+            <CurrentCity
+              name={city}
+              temp={weather.current.temp}
+              windSpeed={weather.current.wind_speed}
+              description={weather.current.weather[0].description}
+              feels_Like={weather.current.feels_like}
+              windDegree={weather.current.wind_deg}
+            />
+          </div>
+          <div className={styles.panelBottom}>
+            <WeeklyForecast daily={weather.daily} />
+          </div>
+          <div className={styles.buttons}>
+            {this.renderButtons()}
+          </div>
+        </div>
+    );
+  }
 }
 
 export default WeatherPanel;

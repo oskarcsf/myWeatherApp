@@ -1,0 +1,17 @@
+p{
+    margin: 0;
+    text-align: center;
+}
+
+.city{
+    font-size:1.5rem;
+}
+
+.temp{
+    font-size: 3rem;
+}
+
+.otherInfo{
+    margin-top: 10%;
+}
+

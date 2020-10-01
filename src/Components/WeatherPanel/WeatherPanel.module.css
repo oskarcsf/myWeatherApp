@@ -1,43 +1,57 @@
 .panel {
-    background-image: url('../../Assets/day.jpeg');
-    background-size: cover;
-    width: 70vw;
-    height: 50vh;
-    margin: 3rem auto 0px;
-    border-radius: 16px;
-    padding: 1rem;
-    box-shadow:
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  background-image: url("../../Assets/day.jpeg");
+  background-size: cover;
+  width: 70vw;
+  height: 50vh;
+  margin: 3rem auto 0px;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
-    max-width: 700px;   
-    color: white;
-    font-weight: bolder;
-    text-shadow: 0 1px 0 black
+  max-width: 700px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0 1px 0 black;
 }
 
-.night{
-    background-image: url('../../Assets/night.jpeg');
-    color: black
+.night {
+  background-image: url("../../Assets/night.jpeg");
+  color: black;
+}
+
+.panelTop {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .panelTop,
-.panelBottom{
-    height: 50%;
-    display: flex;
-    justify-content: space-around;
+.panelBottom {
+  height: 50%;
+  display: flex;
 }
 
-.country{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.country {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.twitterFeed{
-    text-align:center;
+.twitterFeed {
+  text-align: center;
 }
 
-.buttons{
-    display:flex;
-    justify-content: center;
+.buttons {
+  display: flex;
+  justify-content: center;
 }
+
+@media only screen and (max-width: 414px) {
+  .panel {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0px;
+    margin: 0px;
+  }
+}
+
