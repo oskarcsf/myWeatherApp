@@ -3,3 +3,10 @@
     justify-content: space-around;
     width: 100%;
 }
+
+.weeklyForecast p{
+    font-size: 1.3rem;
+    font-weight: bolder;
+    padding: 0px;
+    text-align: center;
+}

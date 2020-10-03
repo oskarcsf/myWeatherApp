@@ -2,7 +2,6 @@
   background-image: url("../../Assets/day.jpeg");
   background-size: cover;
   width: 70vw;
-  height: 50vh;
   margin: 3rem auto 0px;
   border-radius: 16px;
   padding: 1rem;
@@ -23,12 +22,13 @@
   font-size: 1rem;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
 }
 
-.panelTop,
-.panelBottom {
-  height: 50%;
+.panelBottom {  
   display: flex;
+  /* height: 30%; */
+  padding: 1rem;
 }
 
 .country {
@@ -44,6 +44,7 @@
 .buttons {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 414px) {
@@ -52,6 +53,10 @@
     height: 100vh;
     border-radius: 0px;
     margin: 0px;
+  }
+  p{
+    font-size: 1.5rem;
+    padding: 0.5rem;
   }
 }
 

@@ -4,23 +4,20 @@ import styles from './CurrentCity.module.css';
 const CurrentCity = props => {
   const { windDegree, name, temp, windSpeed, feels_Like, description } = props;
 
-  const renderWindDirection = (degree) => {
-    switch (true) {
-      case (windDegree > 316 || windDegree <= 45):
-        return "North"
-        break;
-      case (windDegree > 46 && windDegree <= 135):
-        return "East"
-        break;
-      case (windDegree > 136 && windDegree <= 225):
-        return "South"
-        break;
-      case (windDegree > 226 && windDegree <= 315):
-        return "West"
-        break;
-      default:
-        return "Default"
-        break;
+  const renderDirectionNew = () => {
+    const directionTable = [
+      { min: 316, max: 360, direction: "North" }, 
+      { min: 0, max: 45, direction: "North" },
+      { min: 46, max: 135, direction: "East" },
+      { min: 136, max: 225, direction: "South" },
+      { min: 226, max: 315, direction: "West" },
+    ]
+    for (let i = 0; i < directionTable.length; i++) {
+      if (windDegree >= directionTable[i].min && windDegree <= directionTable[i].max) {
+        return (
+          directionTable[i].direction
+        )
+      }
     }
   }
 
@@ -31,8 +28,8 @@ const CurrentCity = props => {
       <p className={styles.temp}>{Math.round(temp)}&deg;</p>
       <div className={styles.otherInfo}>
         <p>Wind Speed: {windSpeed} km/h</p>
-        <p>Wind Direction: {renderWindDirection()}
-        </p>
+        <p>Wind Direction: {renderDirectionNew()}</p>
+        <p>Suitable for Dive: </p>
         <p>Feels Like: {(Math.round((feels_Like) * 10) / 10)}&deg;</p>
       </div>
     </div>
