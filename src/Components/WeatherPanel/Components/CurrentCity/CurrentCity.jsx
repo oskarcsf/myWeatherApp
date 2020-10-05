@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './CurrentCity.module.css';
 
 const CurrentCity = props => {
   const { windDegree, name, temp, windSpeed, feels_Like, description } = props;
-
   const renderDirectionNew = () => {
     const directionTable = [
       { min: 316, max: 360, direction: "North" }, 
@@ -20,6 +19,7 @@ const CurrentCity = props => {
       }
     }
   }
+  
 
   return (
     <div>

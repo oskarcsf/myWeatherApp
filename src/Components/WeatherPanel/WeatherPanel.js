@@ -23,7 +23,16 @@ class WeatherPanel extends Component {
   }
 
   componentDidMount() {
-    this.onLocationChange(this.state.data[0].locationValue, this.state.data[0].city)
+    this.onLocationChange(this.state.data[0].locationValue, this.state.data[0].city);
+    const msPerMinute = 60000;
+    setInterval( ()=> {
+      for (let i = 0; i < this.state.data.length; i++) {
+        if ( this.state.city === this.state.data[i].city){
+          this.onLocationChange(this.state.data[i].locationValue, this.state.data[i].city)
+        }
+      }
+      console.log(this.state.city)
+    }, msPerMinute)
   }
 
   onLocationChange = (latitudeAndLongtitude, city) => {
