@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './CurrentCity.module.css';
 
 const CurrentCity = props => {
-  const { windDegree, name, temp, windSpeed, feels_Like, description } = props;
+  const { windDegree, name, temp, windSpeed, feels_Like, description, unixTime, timeZoneOffset } = props;
   const renderDirectionNew = () => {
     const directionTable = [
-      { min: 316, max: 360, direction: "North" }, 
+      { min: 316, max: 360, direction: "North" },
       { min: 0, max: 45, direction: "North" },
       { min: 46, max: 135, direction: "East" },
       { min: 136, max: 225, direction: "South" },
@@ -19,7 +19,6 @@ const CurrentCity = props => {
       }
     }
   }
-  
 
   return (
     <div>
@@ -29,7 +28,6 @@ const CurrentCity = props => {
       <div className={styles.otherInfo}>
         <p>Wind Speed: {windSpeed} km/h</p>
         <p>Wind Direction: {renderDirectionNew()}</p>
-        <p>Suitable for Dive: </p>
         <p>Feels Like: {(Math.round((feels_Like) * 10) / 10)}&deg;</p>
       </div>
     </div>

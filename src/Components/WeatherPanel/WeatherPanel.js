@@ -78,6 +78,8 @@ class WeatherPanel extends Component {
         <div className={styles.panel} >
           <div className={styles.panelTop}>
             <CurrentCity
+              unixTime = {weather.current.dt}
+              timeZoneOffset={weather.timezone_offset}
               name={city}
               temp={weather.current.temp}
               windSpeed={weather.current.wind_speed}
@@ -87,7 +89,10 @@ class WeatherPanel extends Component {
             />
           </div>
           <div className={styles.panelBottom}>
-            <WeeklyForecast daily={weather.daily} />
+            <WeeklyForecast 
+            daily={weather.daily}
+            offset={weather.timezone_offset}
+             />
           </div>
           <div className={styles.buttons}>
             {this.renderButtons()}

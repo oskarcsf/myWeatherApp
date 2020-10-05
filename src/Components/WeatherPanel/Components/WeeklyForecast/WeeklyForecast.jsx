@@ -7,7 +7,7 @@ const FiveDayForeCast = props => {
         const fiveDay = props.daily.slice(1, 6);
         return fiveDay.map((daily, index) => {
             const unixTime = daily.dt;
-            const timeZoneOffset = 36000;
+            const timeZoneOffset = props.offset;
             const unixTimeWithOffset = unixTime + timeZoneOffset;
             const secondToMiliSecond = 1000;
             const unixInMS = unixTimeWithOffset * secondToMiliSecond;
